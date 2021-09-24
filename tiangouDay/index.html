@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=
+    , initial-scale=1.0"
+    />
+    <title>舔狗日记</title>
+  </head>
+  <style>
+    #dayItem {
+      width: 70vw;
+      margin: 5vh 10vw 5vh 10vw;
+      border-width: 2px 5px 4px 3px;
+      border-style: solid;
+      border-color: #03081a;
+      padding: 20px;
+      font-family: "HYTiaoTiao";
+    }
+    .border-1 {
+      border-bottom-left-radius: 15px 255px;
+      border-bottom-right-radius: 225px 15px;
+      border-top-left-radius: 255px 15px;
+      border-top-right-radius: 15px 225px;
+    }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      color: #333;
+    }
+    html {
+      font-size: 13.3333vw;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      font-size: 16px;
+      background-color: #f4f5fd;
+      color: #03081a;
+    }
+
+    section::-webkit-scrollbar,
+    article::-webkit-scrollbar {
+      display: none;
+    }
+    mark {
+      background-color: transparent;
+      background-image: -webkit-linear-gradient(#ffe21d, #ffe21d);
+      background-image: -o-linear-gradient(#ffe21d, #ffe21d);
+      background-image: linear-gradient(#ffe21d, #ffe21d);
+      background-position: 0 85%;
+      background-size: 100% 20%;
+      background-repeat: no-repeat;
+    }
+    #button {
+      border: 0 none;
+      margin: 0 0.3rem;
+      padding: 0;
+      background-color: #fff;
+      width: 1rem;
+      height: 1rem;
+      color: transparent;
+      border-radius: 100%;
+      background-image: url(./refresh.gif);
+      background-size: cover;
+      background-position: 50% 50%;
+      background-repeat: no-repeat;
+      box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      outline: 0;
+      margin: auto;
+    }
+    .title {
+      font-size: 0.7rem;
+      text-align: center;
+    }
+    .describe {
+      text-align: center;
+      font-size: 0.2rem;
+      margin-top: 20px;
+    }
+    #weather {
+      text-align: right;
+      margin-right: 10vw;
+      font-weight: bolder;
+      color: #ffcc00;
+    }
+  </style>
+  <div class="title">舔狗日记</div>
+  <div class="describe">舔狗舔狗，舔到最后一无所有</div>
+  <div id="dayItem" class="border-1"></div>
+  <div id="weather"></div>
+  <div id="button"></div>
+  <body>
+    <script src="./index.js"></script>
+    <script>
+      let dayItem = document.getElementById("dayItem");
+      dayItem.innerHTML = getOne();
+      document.getElementById("button").onclick = function () {
+        dayItem.innerHTML = getOne();
+      };
+      getWeather().then((data) => {
+        console.log(data);
+        let text =
+          data.city + " " + data.today + " " + data.wd + " " + data.weather;
+        document.getElementById("weather").innerHTML = text;
+      });
+    </script>
+  </body>
+</html>
